@@ -1,0 +1,14 @@
+{
+  "name": "Анна Шаверина — карьерный консультант",
+  "short_name": "Анна Шаверина",
+  "description": "Карьерный консультант с мышлением хедхантера. Помогаю выходить на нужную роль точечно.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F2EA",
+  "theme_color": "#F6F2EA",
+  "lang": "ru",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
