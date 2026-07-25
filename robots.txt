@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anna-shaverina.ru/sitemap.xml
+Sitemap: https://anelime.github.io/Anna-HR/sitemap.xml
