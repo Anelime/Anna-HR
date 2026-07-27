@@ -4,8 +4,8 @@
   "description": "Карьерный консультант с мышлением хедхантера. Помогаю выходить на нужную роль точечно.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F6F2EA",
-  "theme_color": "#F6F2EA",
+  "background_color": "#FAF7F2",
+  "theme_color": "#FAF7F2",
   "lang": "ru",
   "icons": [
     { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
