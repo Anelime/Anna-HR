@@ -7,14 +7,20 @@
    Это единственное место, где нужно править контакты.
    --------------------------------------------------------- */
 const CONFIG = {
-  hh:    "https://hh.ru/mentors/6411",
+  // --- личка: куда писать в директ ---
+  tg:    "",   // TODO: личный Telegram, вида https://t.me/username
+  max:   "",   // TODO: личный Max, если отличается от канала ниже
+
+  // --- каналы: где читать ---
+  tgChannel:  "",   // TODO: Telegram-канал «А зачем мне тогда резюме?»
+  maxChannel: "https://max.ru/join/SMhe42i6_j_sAY8gJr7YliVVt_5zvStjUOI-_NRWU5I",
   dzen:  "https://dzen.ru/shaverina_consultant",
   vk:    "https://vk.com/shaverina_consultant",
+
+  // --- прочее ---
+  hh:    "https://hh.ru/mentors/6411",
   setka: "https://setka.ru/users/a08baf91-d9fd-4711-a15f-7b4570cbdf1e",
-  max:   "https://max.ru/join/SMhe42i6_j_sAY8gJr7YliVVt_5zvStjUOI-_NRWU5I",
-  phone: "+79930726515",
   email: "a.shaverina@gmail.com",
-  tg:    "",                              // TODO: прямая ссылка на Telegram (t.me/…)
 
   // Куда отправлять заявку с формы. Пока не задан endpoint — форма
   // показывает подтверждение. Впишите URL (Formspree, Getform и т.п.).
@@ -46,19 +52,35 @@ document.addEventListener("DOMContentLoaded", () => {
 function wireLinks(){
   document.querySelectorAll("[data-link]").forEach(a => {
     const key = a.getAttribute("data-link");
+
     if (key === "email"){ a.href = "mailto:" + CONFIG.email; a.removeAttribute("target"); return; }
-    if (key === "phone"){ a.href = "tel:" + CONFIG.phone; a.removeAttribute("target"); return; }
+
     // Политика конфиденциальности — пока отдельной страницы нет
     if (key === "privacy"){
       if (CONFIG.privacyUrl) a.href = CONFIG.privacyUrl;
       else a.removeAttribute("href");
       return;
     }
-    // Telegram пока не задан — ведём в Max (мессенджер Анны), чтобы ссылка не была пустой
-    if (key === "tg" && !CONFIG.tg){
-      if (CONFIG.max){ a.href = CONFIG.max; return; }
-      a.href = "mailto:" + CONFIG.email; a.removeAttribute("target"); return;
+
+    // Личка в Telegram / Max: своя ссылка, иначе ссылка канала —
+    // оттуда тоже можно написать. Совсем без ссылки плашку скрываем,
+    // чтобы кнопка «Telegram» не уводила куда-то ещё.
+    if (key === "tg" || key === "max"){
+      const url = key === "tg"
+        ? (CONFIG.tg || CONFIG.tgChannel)
+        : (CONFIG.max || CONFIG.maxChannel);
+      if (url) a.href = url;
+      else a.hidden = true;
+      return;
     }
+
+    // Каналы: если ссылки нет — прячем плашку целиком, чтобы не вести в пустоту
+    if (key === "tgChannel" || key === "maxChannel"){
+      if (CONFIG[key]) a.href = CONFIG[key];
+      else a.hidden = true;
+      return;
+    }
+
     if (CONFIG[key]) a.href = CONFIG[key];
   });
 }
