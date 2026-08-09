@@ -272,6 +272,52 @@ h1,h2,h3{
 }
 .section-tint .about-tags li{ background:var(--card); }
 
+/* ---------- таймлайн карьеры ---------- */
+.timeline{ margin-top:28px; border-top:1px solid var(--line); }
+.timeline li{
+  display:grid; grid-template-columns:104px 1fr; gap:16px;
+  padding:13px 0; border-bottom:1px solid var(--line-2); align-items:baseline;
+}
+.tl-years{
+  font-family:var(--display); font-size:.83rem; color:var(--fg-3);
+  font-variant-numeric:tabular-nums; letter-spacing:-.02em;
+}
+.tl-place{ font-size:.96rem; color:var(--fg-2); }
+.tl-place b{ display:block; font-weight:600; color:var(--fg); font-size:1rem; margin-bottom:1px; }
+.timeline .tl-now .tl-years{ color:var(--accent); }
+.timeline .tl-now .tl-place b{ color:var(--accent); }
+.timeline-note{ margin-top:16px; font-size:.9rem; color:var(--fg-3); }
+
+/* =========================================================
+   EXPERTISE
+   ========================================================= */
+.exp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0 clamp(24px,4vw,60px); }
+.exp-list li{
+  padding:18px 0; border-bottom:1px solid var(--line);
+  transition:padding-left var(--dur) var(--ease);
+}
+.exp-list li:first-child{ border-top:1px solid var(--line); }
+.exp-list li:hover{ padding-left:6px; }
+.exp-list b{
+  display:block; font-family:var(--display); font-weight:500;
+  font-size:1.06rem; letter-spacing:-.03em; margin-bottom:5px;
+}
+.exp-list span{ display:block; font-size:.93rem; color:var(--fg-2); }
+.exp-levels b{ color:var(--accent); }
+
+/* =========================================================
+   PLACEMENTS — компании клиентов
+   ========================================================= */
+.companies{ display:flex; flex-wrap:wrap; gap:10px; }
+.companies li{
+  background:var(--card); border:1px solid var(--line-2); border-radius:100px;
+  padding:11px 20px; font-size:.97rem; font-weight:500; color:var(--fg);
+  box-shadow:var(--shadow);
+  transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.companies li:hover{ transform:translateY(-2px); box-shadow:var(--shadow-md); border-color:rgba(232,85,44,.35); }
+.companies-note{ margin-top:22px; font-size:.85rem; color:var(--fg-3); }
+
 /* =========================================================
    METHOD
    ========================================================= */
@@ -531,6 +577,8 @@ h1,h2,h3{
   .step p{ grid-column:2; }
   .svc{ grid-template-columns:1fr auto; }
   .svc-desc{ grid-column:1 / -1; order:3; }
+  .exp-grid{ grid-template-columns:1fr; }
+  .exp-list:last-child li:first-child{ border-top:none; }
   .rev-feature{ grid-template-columns:1fr; }
   .rev-photo{ max-width:360px; aspect-ratio:4/5; }
   .rev-grid{ grid-template-columns:1fr 1fr; }
