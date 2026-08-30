@@ -9,6 +9,7 @@
 const CONFIG = {
   // --- личка: куда писать в директ ---
   tg:    "",   // TODO: личный Telegram, вида https://t.me/username
+  wa:    "https://wa.me/79930726515",   // WhatsApp
   max:   "",   // TODO: личный Max, если отличается от канала ниже
 
   // --- каналы: где читать ---
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   wireReveal();
   wireCounters();
   wireFaqAccordion();
+  wireServiceDetails();
   wireResumeFile();
   wireForm();
   wireCoursesForm();
@@ -65,6 +67,12 @@ function wireLinks(){
     // Личка в Telegram / Max: своя ссылка, иначе ссылка канала —
     // оттуда тоже можно написать. Совсем без ссылки плашку скрываем,
     // чтобы кнопка «Telegram» не уводила куда-то ещё.
+    if (key === "wa"){
+      if (CONFIG.wa) a.href = CONFIG.wa;
+      else a.hidden = true;
+      return;
+    }
+
     if (key === "tg" || key === "max"){
       const url = key === "tg"
         ? (CONFIG.tg || CONFIG.tgChannel)
@@ -74,10 +82,12 @@ function wireLinks(){
       return;
     }
 
-    // Каналы: если ссылки нет — прячем плашку целиком, чтобы не вести в пустоту
+    // Каналы: если ссылки нет — прячем всю карточку/строку, чтобы не
+    // оставлять описание без кнопки и не вести в пустоту
     if (key === "tgChannel" || key === "maxChannel"){
-      if (CONFIG[key]) a.href = CONFIG[key];
-      else a.hidden = true;
+      if (CONFIG[key]){ a.href = CONFIG[key]; return; }
+      const card = a.closest(".channel") || a.closest(".press-item") || a;
+      card.hidden = true;
       return;
     }
 
@@ -184,6 +194,16 @@ function wireFaqAccordion(){
       if (item.open){
         items.forEach(other => { if (other !== item) other.open = false; });
       }
+    });
+  });
+}
+
+/* -------- «подробнее» в услугах: открыт только один -------- */
+function wireServiceDetails(){
+  const items = document.querySelectorAll(".svc-more");
+  items.forEach(item => {
+    item.addEventListener("toggle", () => {
+      if (item.open) items.forEach(o => { if (o !== item) o.open = false; });
     });
   });
 }
