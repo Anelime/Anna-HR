@@ -8,12 +8,12 @@
    --------------------------------------------------------- */
 const CONFIG = {
   // --- личка: куда писать в директ ---
-  tg:    "",   // TODO: личный Telegram, вида https://t.me/username
+  tg:    "https://t.me/shaverka",   // личный Telegram
   wa:    "https://wa.me/79930726515",   // WhatsApp
   max:   "",   // TODO: личный Max, если отличается от канала ниже
 
   // --- каналы: где читать ---
-  tgChannel:  "",   // TODO: Telegram-канал «А зачем мне тогда резюме?»
+  tgChannel:  "https://t.me/looking_for_a_dream_job",   // канал «А зачем мне тогда резюме?»
   maxChannel: "https://max.ru/join/SMhe42i6_j_sAY8gJr7YliVVt_5zvStjUOI-_NRWU5I",
   dzen:  "https://dzen.ru/shaverina_consultant",
   vk:    "https://vk.com/shaverina_consultant",
